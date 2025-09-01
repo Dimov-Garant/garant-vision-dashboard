@@ -140,7 +140,11 @@ export const InvestmentChart = () => {
         </div>
 
         {/* Interactive Chart */}
-        <Card className="p-8 bg-gradient-card border-border/50 shadow-xl">
+        <Card className="relative p-10 bg-gradient-to-br from-card via-card/80 to-primary/5 border border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:scale-[1.01] backdrop-blur-sm rounded-2xl overflow-hidden group">
+          {/* Animated background overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full -translate-y-16 translate-x-16 blur-xl"></div>
+          <div className="relative z-10">
           <div className="mb-6">
             <h3 className="text-2xl font-semibold text-foreground mb-2">Ценово представяне на акции</h3>
             <p className="text-muted-foreground">Цени на акции на Гарант и притежаваните компании</p>
@@ -212,6 +216,7 @@ export const InvestmentChart = () => {
               <div className="w-3 h-0.5 bg-muted-foreground/40 rounded-full"></div>
               <span className="text-muted-foreground">Притежавани акции</span>
             </div>
+          </div>
           </div>
         </Card>
       </div>
