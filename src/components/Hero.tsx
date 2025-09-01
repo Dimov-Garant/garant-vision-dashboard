@@ -22,8 +22,8 @@ export const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
-            Професионален финансов анализ на български и международни компании. 
-            Вземете информирани инвестиционни решения с нашите експертни оценки.
+            Оценки на български и международни компании. 
+            Вземете информирани инвестиционни решения и подкрепете дейността ни с абонамента си.
           </p>
 
           <div className="flex flex-col gap-4 justify-center items-center animate-slide-up">
