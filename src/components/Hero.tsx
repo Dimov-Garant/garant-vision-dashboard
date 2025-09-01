@@ -26,15 +26,20 @@ export const Hero = () => {
             Вземете информирани инвестиционни решения с нашите експертни оценки.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+          <div className="flex flex-col gap-4 justify-center items-center animate-slide-up">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105">
               Започни сега
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300">
-              <TrendingUp className="mr-2 h-5 w-5" />
-              Виж анализи
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105">
+              Започни сега
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105">
+              Започни сега
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
