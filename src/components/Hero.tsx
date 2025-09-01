@@ -14,8 +14,8 @@ export const Hero = () => {
           className="absolute inset-0 w-full h-full object-cover blur-sm"
           style={{ filter: 'blur(2px)' }}
         >
-          <source src="https://videos.pexels.com/video-files/3196817/3196817-uhd_2560_1440_24fps.mp4" type="video/mp4" />
-          <source src="https://videos.pexels.com/video-files/4425574/4425574-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/2278095/2278095-uhd_2560_1440_30fps.mp4" type="video/mp4" />
         </video>
         {/* Overlay gradient for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/40"></div>
