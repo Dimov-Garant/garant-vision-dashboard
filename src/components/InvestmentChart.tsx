@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, BarChart3 } from "lucide-react";
 
 const investmentData = [
-  { month: 'Ян', portfolio: 85000, market: 82000, garant: 88000 },
-  { month: 'Фев', portfolio: 89000, market: 85000, garant: 92000 },
-  { month: 'Мар', portfolio: 87000, market: 83000, garant: 91000 },
-  { month: 'Апр', portfolio: 94000, market: 88000, garant: 97000 },
-  { month: 'Май', portfolio: 98000, market: 92000, garant: 102000 },
-  { month: 'Юни', portfolio: 105000, market: 96000, garant: 108000 },
+  { month: 'Ян', portfolio: 85000, market: 82000, garant: 88000, garantBulgaria: 90000, allAssets: 87000 },
+  { month: 'Фев', portfolio: 89000, market: 85000, garant: 92000, garantBulgaria: 95000, allAssets: 91000 },
+  { month: 'Мар', portfolio: 87000, market: 83000, garant: 91000, garantBulgaria: 93000, allAssets: 89000 },
+  { month: 'Апр', portfolio: 94000, market: 88000, garant: 97000, garantBulgaria: 100000, allAssets: 96000 },
+  { month: 'Май', portfolio: 98000, market: 92000, garant: 102000, garantBulgaria: 106000, allAssets: 100000 },
+  { month: 'Юни', portfolio: 105000, market: 96000, garant: 108000, garantBulgaria: 112000, allAssets: 107000 },
 ];
 
 const performanceMetrics = [
@@ -83,28 +83,22 @@ export const InvestmentChart = () => {
             <p className="text-muted-foreground">Сравнение на Garant Bulgaria стратегии с пазарните индекси</p>
           </div>
           
-          <div className="h-96 w-full">
+          <div className="h-96 w-full bg-muted/20 rounded-lg p-4">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={investmentData}>
-                <defs>
-                  <linearGradient id="garant" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
-                  </linearGradient>
-                  <linearGradient id="portfolio" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="hsl(var(--success))" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="hsl(var(--success))" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <LineChart data={investmentData}>
+                <CartesianGrid strokeDasharray="1 1" stroke="hsl(var(--border))" strokeOpacity={0.3} />
                 <XAxis 
                   dataKey="month" 
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
+                  axisLine={false}
+                  tickLine={false}
                 />
                 <YAxis 
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
+                  axisLine={false}
+                  tickLine={false}
                   tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
                 />
                 <Tooltip 
@@ -112,24 +106,29 @@ export const InvestmentChart = () => {
                     backgroundColor: 'hsl(var(--card))',
                     border: '1px solid hsl(var(--border))',
                     borderRadius: '8px',
-                    color: 'hsl(var(--foreground))'
+                    color: 'hsl(var(--foreground))',
+                    boxShadow: '0 10px 40px -10px hsl(var(--foreground) / 0.1)'
                   }}
                   formatter={(value: number) => [`${value.toLocaleString()} лв`, '']}
                 />
-                <Area 
+                
+                {/* Light gray background lines for all assets */}
+                <Line 
                   type="monotone" 
-                  dataKey="garant" 
-                  stroke="hsl(var(--primary))" 
-                  strokeWidth={3}
-                  fill="url(#garant)"
-                  name="Garant Стратегии"
+                  dataKey="allAssets" 
+                  stroke="hsl(var(--muted-foreground))" 
+                  strokeWidth={1}
+                  strokeOpacity={0.4}
+                  dot={false}
+                  name="Всички активи"
                 />
-                <Area 
+                <Line 
                   type="monotone" 
                   dataKey="portfolio" 
-                  stroke="hsl(var(--success))" 
-                  strokeWidth={2}
-                  fill="url(#portfolio)"
+                  stroke="hsl(var(--muted-foreground))" 
+                  strokeWidth={1}
+                  strokeOpacity={0.4}
+                  dot={false}
                   name="Общ портфейл"
                 />
                 <Line 
@@ -137,23 +136,41 @@ export const InvestmentChart = () => {
                   dataKey="market" 
                   stroke="hsl(var(--muted-foreground))" 
                   strokeWidth={1}
-                  strokeDasharray="5 5"
+                  strokeDasharray="3 3"
+                  strokeOpacity={0.5}
+                  dot={false}
+                  name="Пазарен индекс"
                 />
-              </AreaChart>
+                
+                {/* Bold line for Garant Bulgaria */}
+                <Line 
+                  type="monotone" 
+                  dataKey="garantBulgaria" 
+                  stroke="hsl(var(--primary))" 
+                  strokeWidth={4}
+                  dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, stroke: 'hsl(var(--primary))', fill: 'hsl(var(--background))' }}
+                  name="Гарант България"
+                />
+              </LineChart>
             </ResponsiveContainer>
           </div>
 
           <div className="flex justify-center mt-6 space-x-6 text-sm">
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-primary rounded-full"></div>
-              <span className="text-muted-foreground">Garant Стратегии</span>
+              <div className="w-4 h-1 bg-primary rounded-full"></div>
+              <span className="text-foreground font-semibold">Гарант България</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-success rounded-full"></div>
+              <div className="w-3 h-0.5 bg-muted-foreground/40 rounded-full"></div>
+              <span className="text-muted-foreground">Всички активи</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-0.5 bg-muted-foreground/40 rounded-full"></div>
               <span className="text-muted-foreground">Общ портфейл</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 border-2 border-muted-foreground rounded-full"></div>
+              <div className="w-3 h-0.5 border border-muted-foreground/50 rounded-full border-dashed"></div>
               <span className="text-muted-foreground">Пазарен индекс</span>
             </div>
           </div>
