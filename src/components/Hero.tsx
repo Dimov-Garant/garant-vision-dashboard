@@ -18,7 +18,7 @@ export const Hero = () => {
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Гарант България Холд
-            <span className="block bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent text-2xl md:text-3xl">инвестиционно дружество</span>
+            <span className="block bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent text-2xl md:text-3xl">Инвестиционно дружество</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
