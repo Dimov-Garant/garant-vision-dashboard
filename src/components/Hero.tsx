@@ -18,7 +18,7 @@ export const Hero = () => {
           <source src="https://videos.pexels.com/video-files/2278095/2278095-uhd_2560_1440_30fps.mp4" type="video/mp4" />
         </video>
         {/* Overlay gradient for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/40 transition-all duration-1000 hover:from-primary/30 hover:via-primary/40 hover:to-primary/50 animate-pulse-slow"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/40"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
