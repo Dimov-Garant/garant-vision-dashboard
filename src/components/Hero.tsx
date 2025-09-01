@@ -15,7 +15,7 @@ export const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             Гарант България Холд
             <span className="block bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent">
-              капитал
+              инвестиционно дружество
             </span>
           </h1>
           
