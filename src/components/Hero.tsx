@@ -1,22 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
-
 export const Hero = () => {
-  return (
-    <section className="relative min-h-screen bg-gradient-hero flex items-center justify-center overflow-hidden">
-      {/* Background Animation */}
+  return <section className="relative min-h-screen bg-gradient-hero flex items-center justify-center overflow-hidden">
+      {/* Background Video */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-bounce-gentle"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover blur-sm" style={{
+        filter: 'blur(2px)'
+      }}>
+          
+          <source src="https://videos.pexels.com/video-files/2278095/2278095-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+        </video>
+        {/* Overlay gradient for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/40"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Гарант България Холд
-            <span className="block bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent text-2xl md:text-4xl">
-              инвестиционно дружество
-            </span>
+            Заедно инвестираме в
+            <span className="block bg-gradient-to-r from-white to-primary-light bg-clip-text text-transparent">Инвестирай сега</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed">
@@ -25,19 +27,12 @@ export const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-            <Button 
-              size="lg" 
-              className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105"
-            >
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105">
               Започни сега
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300"
-            >
+            <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300">
               <TrendingUp className="mr-2 h-5 w-5" />
               Виж анализи
             </Button>
@@ -51,6 +46,5 @@ export const Hero = () => {
           <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
