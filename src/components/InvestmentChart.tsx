@@ -2,96 +2,33 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Card } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, BarChart3 } from "lucide-react";
 
-const stockPriceData = [
-  { 
-    month: 'Ян', 
-    garantShare: 24.50, 
-    sofarmaShare: 18.20, 
-    pibShare: 12.40, 
-    euroholdShare: 8.60, 
-    maCapitalShare: 15.80,
-    appleShare: 145.30,
-    microsoftShare: 280.20
-  },
-  { 
-    month: 'Фев', 
-    garantShare: 26.10, 
-    sofarmaShare: 19.10, 
-    pibShare: 13.90, 
-    euroholdShare: 8.40, 
-    maCapitalShare: 16.70,
-    appleShare: 150.80,
-    microsoftShare: 290.50
-  },
-  { 
-    month: 'Мар', 
-    garantShare: 25.40, 
-    sofarmaShare: 18.50, 
-    pibShare: 13.20, 
-    euroholdShare: 8.20, 
-    maCapitalShare: 16.20,
-    appleShare: 148.60,
-    microsoftShare: 285.40
-  },
-  { 
-    month: 'Апр', 
-    garantShare: 28.70, 
-    sofarmaShare: 20.30, 
-    pibShare: 15.10, 
-    euroholdShare: 9.10, 
-    maCapitalShare: 18.40,
-    appleShare: 165.20,
-    microsoftShare: 310.80
-  },
-  { 
-    month: 'Май', 
-    garantShare: 31.20, 
-    sofarmaShare: 21.80, 
-    pibShare: 16.80, 
-    euroholdShare: 9.60, 
-    maCapitalShare: 19.90,
-    appleShare: 175.40,
-    microsoftShare: 325.60
-  },
-  { 
-    month: 'Юни', 
-    garantShare: 34.50, 
-    sofarmaShare: 23.40, 
-    pibShare: 18.20, 
-    euroholdShare: 10.20, 
-    maCapitalShare: 21.60,
-    appleShare: 182.90,
-    microsoftShare: 340.20
-  },
-];
-
-const companyStocks = [
-  { key: 'sofarmaShare', name: 'Софарма АД', color: 'hsl(var(--muted-foreground))' },
-  { key: 'pibShare', name: 'ПИБ АД', color: 'hsl(var(--muted-foreground))' },
-  { key: 'euroholdShare', name: 'Еврохолд', color: 'hsl(var(--muted-foreground))' },
-  { key: 'maCapitalShare', name: 'M&A Capital', color: 'hsl(var(--muted-foreground))' },
-  { key: 'appleShare', name: 'Apple Inc.', color: 'hsl(var(--muted-foreground))' },
-  { key: 'microsoftShare', name: 'Microsoft', color: 'hsl(var(--muted-foreground))' },
+const investmentData = [
+  { month: 'Ян', portfolio: 85000, market: 82000, garant: 88000 },
+  { month: 'Фев', portfolio: 89000, market: 85000, garant: 92000 },
+  { month: 'Мар', portfolio: 87000, market: 83000, garant: 91000 },
+  { month: 'Апр', portfolio: 94000, market: 88000, garant: 97000 },
+  { month: 'Май', portfolio: 98000, market: 92000, garant: 102000 },
+  { month: 'Юни', portfolio: 105000, market: 96000, garant: 108000 },
 ];
 
 const performanceMetrics = [
   { 
-    label: "Цена на дял Гарант", 
-    value: "34.50 лв", 
+    label: "Годишна доходност", 
+    value: "+24.5%", 
     trend: "up", 
-    description: "Ръст от 40.8% за периода" 
+    description: "Превишаваме пазара с 8.2%" 
   },
   { 
-    label: "Средна цена на акциите", 
-    value: "88.65 лв", 
+    label: "Текущ портфейл", 
+    value: "2.8M лв", 
     trend: "up", 
-    description: "Средно за притежаваните позиции" 
+    description: "Активно управлявани активи" 
   },
   { 
-    label: "Най-добро представяне", 
-    value: "+82.1%", 
-    trend: "up", 
-    description: "Apple Inc. за периода" 
+    label: "Брой позиции", 
+    value: "42", 
+    trend: "neutral", 
+    description: "Диверсифициран портфейл" 
   }
 ];
 
@@ -101,11 +38,11 @@ export const InvestmentChart = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Ценово представяне на акции
+            Инвестиционни резултати
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Проследете цените на дялове на Гарант и акциите от притежаваните компании 
-            в реално време
+            Проследете представянето на нашите инвестиционни стратегии и 
+            сравнете резултатите с пазарните индекси
           </p>
         </div>
 
@@ -140,83 +77,85 @@ export const InvestmentChart = () => {
         </div>
 
         {/* Interactive Chart */}
-        <Card className="relative p-10 bg-gradient-to-br from-card via-card/80 to-primary/5 border border-primary/20 shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:scale-[1.01] backdrop-blur-sm rounded-2xl overflow-hidden group">
-          {/* Animated background overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full -translate-y-16 translate-x-16 blur-xl"></div>
-          <div className="relative z-10">
+        <Card className="p-8 bg-gradient-card border-border/50 shadow-xl">
           <div className="mb-6">
-            <h3 className="text-2xl font-semibold text-foreground mb-2">Ценово представяне на акции</h3>
-            <p className="text-muted-foreground">Цени на акции на Гарант и притежаваните компании</p>
+            <h3 className="text-2xl font-semibold text-foreground mb-2">Портфейлно представяне</h3>
+            <p className="text-muted-foreground">Сравнение на Garant Bulgaria стратегии с пазарните индекси</p>
           </div>
           
-          <div className="h-96 w-full bg-muted/20 rounded-lg p-4">
+          <div className="h-96 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={stockPriceData}>
-                <CartesianGrid strokeDasharray="1 1" stroke="hsl(var(--border))" strokeOpacity={0.3} />
+              <AreaChart data={investmentData}>
+                <defs>
+                  <linearGradient id="garant" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="portfolio" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="hsl(var(--success))" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="hsl(var(--success))" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis 
                   dataKey="month" 
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
-                  axisLine={false}
-                  tickLine={false}
                 />
                 <YAxis 
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
-                  axisLine={false}
-                  tickLine={false}
-                  tickFormatter={(value) => `${value.toFixed(0)} лв`}
+                  tickFormatter={(value) => `${(value / 1000).toFixed(0)}K`}
                 />
                 <Tooltip 
                   contentStyle={{
                     backgroundColor: 'hsl(var(--card))',
                     border: '1px solid hsl(var(--border))',
                     borderRadius: '8px',
-                    color: 'hsl(var(--foreground))',
-                    boxShadow: '0 10px 40px -10px hsl(var(--foreground) / 0.1)'
+                    color: 'hsl(var(--foreground))'
                   }}
-                  formatter={(value: number) => [`${value.toFixed(2)} лв`, '']}
+                  formatter={(value: number) => [`${value.toLocaleString()} лв`, '']}
                 />
-                
-                {/* Light gray lines for individual company stocks */}
-                {companyStocks.map((stock) => (
-                  <Line 
-                    key={stock.key}
-                    type="monotone" 
-                    dataKey={stock.key} 
-                    stroke={stock.color} 
-                    strokeWidth={1}
-                    strokeOpacity={0.4}
-                    dot={false}
-                    name={stock.name}
-                  />
-                ))}
-                
-                {/* Bold line for Garant share */}
+                <Area 
+                  type="monotone" 
+                  dataKey="garant" 
+                  stroke="hsl(var(--primary))" 
+                  strokeWidth={3}
+                  fill="url(#garant)"
+                  name="Garant Стратегии"
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="portfolio" 
+                  stroke="hsl(var(--success))" 
+                  strokeWidth={2}
+                  fill="url(#portfolio)"
+                  name="Общ портфейл"
+                />
                 <Line 
                   type="monotone" 
-                  dataKey="garantShare" 
-                  stroke="hsl(var(--primary))" 
-                  strokeWidth={4}
-                  dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: 'hsl(var(--primary))', fill: 'hsl(var(--background))' }}
-                  name="Гарант дял"
+                  dataKey="market" 
+                  stroke="hsl(var(--muted-foreground))" 
+                  strokeWidth={1}
+                  strokeDasharray="5 5"
                 />
-              </LineChart>
+              </AreaChart>
             </ResponsiveContainer>
           </div>
 
           <div className="flex justify-center mt-6 space-x-6 text-sm">
             <div className="flex items-center space-x-2">
-              <div className="w-4 h-1 bg-primary rounded-full"></div>
-              <span className="text-foreground font-semibold">Гарант дял</span>
+              <div className="w-3 h-3 bg-primary rounded-full"></div>
+              <span className="text-muted-foreground">Garant Стратегии</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-0.5 bg-muted-foreground/40 rounded-full"></div>
-              <span className="text-muted-foreground">Притежавани акции</span>
+              <div className="w-3 h-3 bg-success rounded-full"></div>
+              <span className="text-muted-foreground">Общ портфейл</span>
             </div>
-          </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 border-2 border-muted-foreground rounded-full"></div>
+              <span className="text-muted-foreground">Пазарен индекс</span>
+            </div>
           </div>
         </Card>
       </div>

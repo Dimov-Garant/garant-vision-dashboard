@@ -4,21 +4,10 @@ import { ArrowRight, TrendingUp } from "lucide-react";
 export const Hero = () => {
   return (
     <section className="relative min-h-screen bg-gradient-hero flex items-center justify-center overflow-hidden">
-      {/* Background Video */}
+      {/* Background Animation */}
       <div className="absolute inset-0 opacity-20">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover blur-sm"
-          style={{ filter: 'blur(2px)' }}
-        >
-          <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-          <source src="https://videos.pexels.com/video-files/2278095/2278095-uhd_2560_1440_30fps.mp4" type="video/mp4" />
-        </video>
-        {/* Overlay gradient for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/40"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-bounce-gentle"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-primary-light/20 rounded-full blur-3xl animate-pulse-slow"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center text-white">
