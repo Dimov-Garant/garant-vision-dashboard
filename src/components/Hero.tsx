@@ -28,7 +28,7 @@ export const Hero = () => {
 
           <div className="flex flex-col gap-4 justify-center items-center animate-slide-up">
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl transition-all duration-300 hover:scale-105">
-              Започни сега
+              Инвестирай сега
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
