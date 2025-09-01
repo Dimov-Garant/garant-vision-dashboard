@@ -23,7 +23,7 @@ const assetCategories = [
   },
   {
     icon: <PieChart className="h-8 w-8" />,
-    title: "ETF фондове",
+    title: "Облигации",
     count: "8 позиции",
     value: "450K лв", 
     percentage: "17%",
